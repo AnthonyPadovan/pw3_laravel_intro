@@ -15,19 +15,26 @@
         <input type="text" id="nome" name="nome" required><br><br>
 
         <label for="preco">Preço</label>
-        <input type="text" step="0.01" name="preco" required><br><br>
+        <input type="text" name="preco" required><br><br>
 
         <label for="estoque">Estoque</label>
         <input type="text" id="estoque" name="estoque" required><br><br>
 
         <button type="submit">Salvar</button>
-
     </form>
 
-    <h2>LIsta de produtos</h2>
+    <h2>Lista de produtos</h2>
 
     @if($produtos->isEmpty())
+        <p>Nenhum Produto cadastrado</p>
     @else
+        <ul>
+            @foreach($produtos as $produto)    
+                <li>
+                    {{ $produto->nome }} - R$ {{ number_format($produto->preco, 2, ',', '.') }} - Estoque: {{ $produto->estoque }}
+                </li>
+            @endforeach
+        </ul>
     @endif
 </body>
 </html>
